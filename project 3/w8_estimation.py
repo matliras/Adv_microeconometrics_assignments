@@ -103,6 +103,7 @@ def variance(
     elif cov_type == 'Sandwich':
         A_inv = H_inv #result.hess_inv
         cov = 1/N * (A_inv @ B @ A_inv)
+        
 
     # se: P-vector of std.errs. 
     se = np.sqrt(np.diag(cov))

@@ -2,6 +2,7 @@ import numpy as np
 from numpy import random
 from numpy import linalg as la
 from scipy import optimize
+from scipy import special
 from scipy.stats import norm
 from tabulate import tabulate
 
@@ -40,7 +41,10 @@ def loglikelihood(theta, y, x):
     Gxb = np.fmax(Gxb, h)     # truncate below at 1e-8 
     Gxb = np.fmin(Gxb, 1.0-h) # truncate above at 0.99999999
 
-    ll = (y==1)*np.log(Gxb) + (y==0)*np.log(1.0 - Gxb) 
+    #ll = (y==1)*np.log(Gxb) + (y==0)*np.log(1.0 - Gxb) 
+    ll = (y==1)*special.log_expit(z) + (y==0)*special.log_expit(-z)
+
+
     return ll
 
 def Ginv(u): 

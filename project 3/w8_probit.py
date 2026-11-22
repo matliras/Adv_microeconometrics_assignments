@@ -32,8 +32,8 @@ def loglikelihood(theta, y, x):
     Gxb = np.fmax(Gxb, 1e-8)    # truncate below at 1e-8 
     Gxb = np.fmin(Gxb, 1.-1e-8) # truncate above at 0.99999999
 
-    ll = (y)*np.log(Gxb) + (1-y)*np.log(1.0 - Gxb)
-    #ll = (y)*norm.logcdf(z) + (1-y)*norm.logcdf(-z)
+    #ll = (y)*np.log(Gxb) + (1-y)*np.log(1.0 - Gxb)
+    ll = (y)*norm.logcdf(z) + (1-y)*norm.logcdf(-z)
 
     return ll
 
